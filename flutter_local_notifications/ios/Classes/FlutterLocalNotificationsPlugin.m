@@ -674,6 +674,7 @@ static FlutterError *getFlutterError(NSError *error) {
     UNNotificationRequest *notificationRequest = [UNNotificationRequest
                                                   requestWithIdentifier:identifier content:content trigger:trigger];
     UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+    center.delegate = self;
     [center addNotificationRequest:notificationRequest withCompletionHandler:^(NSError * _Nullable error) {
         if (error == nil) {
             result(nil);
